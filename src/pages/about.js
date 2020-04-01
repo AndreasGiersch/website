@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "gatsby"
 
 const About = () => {
   return (
@@ -8,6 +9,7 @@ const About = () => {
       <p>
         <b>Add links to github/gitlab</b>
       </p>
+      <Link to="/">Go back to the index page</Link>
     </div>
   )
 }
