@@ -193,6 +193,7 @@ function filterProducts(products, category, filterText, inStockOnly, sort) {
         default:
           break
       }
+      return 0
     })
   }
 

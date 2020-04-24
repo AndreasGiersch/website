@@ -8,6 +8,8 @@ import Form from "react-bootstrap/Form"
 import FormControl from "react-bootstrap/FormControl"
 import Button from "react-bootstrap/Button"
 
+import Image from "./image"
+
 const Navigationbar = ({ MenuItems }) => (
   //   {
   //     MenuItems
@@ -22,7 +24,7 @@ const Navigationbar = ({ MenuItems }) => (
           textDecoration: `none`,
         }}
       >
-        <img src="../images/Dahla.jpg" alt="Img not found" />
+        <Image />
         My website
       </Link>
     </Navbar.Brand>
