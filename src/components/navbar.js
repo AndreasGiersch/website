@@ -42,7 +42,7 @@ const Navigationbar = ({ MenuItems }) => (
           <NavDropdown.Item href="/">Separated link</NavDropdown.Item>
         </NavDropdown>
       </Nav>
-      <Form inline>
+      <Form inline className="navbar-search">
         <FormControl type="text" placeholder="Search..." className="mr-sm-2" />
         <Button variant="outline-success">Search</Button>
       </Form>

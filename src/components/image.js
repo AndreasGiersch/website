@@ -14,9 +14,11 @@ import Img from "gatsby-image"
  */
 
 /**
- * Queries the site for a picture of dahla
+ * Queries the site for dog pictures
  */
-const Image = () => {
+// const paths = ["Dahla.jpg", "Django-1.jpg", "Django-2.jpg", "Django-3.jpg"]
+
+const Dahla = () => {
   const data = useStaticQuery(graphql`
     query {
       placeholderImage: file(relativePath: { eq: "Dahla.jpg" }) {
@@ -29,7 +31,7 @@ const Image = () => {
     }
   `)
 
-  return <Img fluid={data.placeholderImage.childImageSharp.fluid} />
+  return <Img fluid={data.placeholderImage.childImageSharp.fluid}  imgStyle={{ objectFit: 'contain', border: "1px #565656 solid", borderradius: "10px" }} />
 }
 
-export default Image
+export default Dahla
