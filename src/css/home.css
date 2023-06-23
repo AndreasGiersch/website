@@ -21,3 +21,14 @@
 .portrait:hover {
   box-shadow: 0 8px 12px 0 rgba(34, 60, 80, 0.16);
 }
+
+.occupations {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.content-col {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}

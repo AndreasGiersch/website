@@ -34,10 +34,20 @@ const Image = () => {
   )
 }
 
-const texts = {
-  name: "Andreas Giersch",
-  occupation: "Web Developer at breeze technologies",
-}
+const texts = [
+  {
+    position: "Web Developer",
+    company: "Blookery GmbH",
+  },
+  {
+    position: "Web Developer",
+    company: "Breeze Technologies UG",
+  },
+  {
+    position: "Consultant in Artificial Intelligence and Data ",
+    company: "Deloitte Consulting GmbH",
+  },
+]
 
 const linkPaths = [
   { link: "/about", label: "About" },
@@ -46,6 +56,17 @@ const linkPaths = [
 ]
 {
   /* <LinkList paths={linkPaths} /> */
+}
+
+const anotherComponent = () => {
+  return texts.map(occupation => {
+    return (
+      <Row className="occupations">
+        {occupation.position} <br />
+        {occupation.company}
+      </Row>
+    )
+  })
 }
 
 const HomePage = () => {
@@ -63,12 +84,16 @@ const HomePage = () => {
           </DropdownButton>
         </Col>
         <Col className="content-col">
-          <Image />
           <Row>
-            {texts.name} <br />
-            {texts.occupation}
+            <Image />
           </Row>
-          <Row></Row>
+          <Row>Andreas Giersch</Row>
+        </Col>
+        <Col className="test-col">
+          <Row>
+            <h4>Previous Occupations</h4>
+          </Row>
+          {anotherComponent()}
         </Col>
         <Col className="link-list">
           List of links:
