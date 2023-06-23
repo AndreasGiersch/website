@@ -1,0 +1,23 @@
+.home {
+  margin: 0;
+}
+
+.sidebar {
+  background-color: rgba(149, 125, 173, 0.6);
+}
+
+.footer-row {
+  background-color: #212529;
+}
+
+.portrait {
+  border-radius: 70%;
+  width: 150px;
+  height: 150px;
+  box-shadow: 0 4px 6px 0 rgba(34, 60, 80, 0.16);
+  transition: all ease-in-out 0.2s;
+}
+
+.portrait:hover {
+  box-shadow: 0 8px 12px 0 rgba(34, 60, 80, 0.16);
+}

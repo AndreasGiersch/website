@@ -2,10 +2,11 @@ import React from "react"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 import Layout from "../components/layout"
-import LinkList from "../components/linkList"
-import SEO from "../components/seo"
 
-const linkPaths = ["/home", "/about", "/doggos", "/exercisesIndex"]
+import SEO from "../components/seo"
+import HomePage from "./home"
+
+import "bootstrap/dist/css/bootstrap.min.css"
 
 const IndexPage = () => (
   <div id="root">
@@ -13,7 +14,7 @@ const IndexPage = () => (
       <SEO title="Home" />
       <h1>Index page</h1>
 
-      <LinkList paths={linkPaths} />
+      <HomePage />
     </Layout>
   </div>
 )

@@ -1,5 +1,5 @@
 import React from "react"
-import "./TicTacToe.css"
+import "../../css/TicTacToe.css"
 
 function Square(props) {
   return (
@@ -11,7 +11,6 @@ function Square(props) {
 
 class Board extends React.Component {
   constructor(props) {
-    super(props)
     this.state = {
       squares: Array(9).fill(null),
       xIsNext: true,

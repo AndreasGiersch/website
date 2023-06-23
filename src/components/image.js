@@ -31,7 +31,16 @@ const Dahla = () => {
     }
   `)
 
-  return <Img fluid={data.placeholderImage.childImageSharp.fluid}  imgStyle={{ objectFit: 'contain', border: "1px #565656 solid", borderradius: "10px" }} />
+  return (
+    <Img
+      fluid={data.placeholderImage.childImageSharp.fluid}
+      imgStyle={{
+        objectFit: "contain",
+        border: "1px #565656 solid",
+        borderradius: "10px",
+      }}
+    />
+  )
 }
 
 export default Dahla

@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "Website",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "A portfolio website showing the most notable Repos and other Coding-Related Stuff",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Andreas Giersch <andreasgiersch@web.de>",
   "dependencies": {
     "bootstrap": "^4.4.1",
     "gatsby": "^2.19.45",
@@ -22,6 +22,12 @@
     "react-helmet": "^5.2.1"
   },
   "devDependencies": {
+    "eslint": "^8.11.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "prettier": "^1.19.1"
   },
   "keywords": [
@@ -32,6 +38,7 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "lint": "eslint ./src --ext .js .jsx .ts,.tsx",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
@@ -39,9 +46,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/AndreasGiersch/website"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/AndreasGiersch/website/issues"
   }
 }
