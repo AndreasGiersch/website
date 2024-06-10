@@ -1,48 +1,39 @@
 {
-  "name": "Website",
-  "private": true,
-  "description": "A portfolio website showing the most notable Repos and other Coding-Related Stuff",
+  "name": "website",
   "version": "0.1.0",
+  "description": "A portfolio website showing the mostççotable Repos and other Coding-Related Stuff",
+  "private": true,
   "author": "Andreas Giersch <andreasgiersch@web.de>",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint --cache \"./**/*.{js,jsx,ts,tsx}\"",
+    "lint:fix": "eslint --cache --fix \"./**/*.{js,jsx,ts,tsx}\""
+  },
   "dependencies": {
-    "bootstrap": "^4.4.1",
-    "gatsby": "^2.19.45",
-    "gatsby-image": "^2.2.44",
-    "gatsby-plugin-manifest": "^2.2.48",
-    "gatsby-plugin-offline": "^3.0.41",
-    "gatsby-plugin-react-helmet": "^3.1.24",
-    "gatsby-plugin-sharp": "^2.4.13",
-    "gatsby-remark-images-grid": "^1.2.0",
-    "gatsby-source-filesystem": "^2.1.56",
-    "gatsby-transformer-sharp": "^2.3.19",
-    "prop-types": "^15.7.2",
-    "react": "^16.12.0",
-    "react-bootstrap": "^1.0.0-beta.17",
-    "react-dom": "^16.12.0",
-    "react-helmet": "^5.2.1"
+    "@nextui-org/react": "^2.4.1",
+    "framer-motion": "^11.2.10",
+    "next": "14.2.3",
+    "react": "^18",
+    "react-dom": "^18"
   },
   "devDependencies": {
-    "eslint": "^8.11.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-react": "^7.29.4",
-    "eslint-plugin-react-hooks": "^4.3.0",
-    "prettier": "^1.19.1"
-  },
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "MIT",
-  "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "lint": "eslint ./src --ext .js .jsx .ts,.tsx",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@typescript-eslint/eslint-plugin": "^7.12.0",
+    "@typescript-eslint/parser": "^7.12.0",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.3",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-react": "^7.34.2",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "postcss": "^8",
+    "prettier": "^3.3.1",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
   },
   "repository": {
     "type": "git",
