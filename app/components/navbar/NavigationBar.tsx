@@ -2,91 +2,269 @@
 import React from 'react';
 import {
     Navbar,
-    NavbarBrand,
     NavbarMenuToggle,
-    NavbarMenuItem,
-    NavbarMenu,
     NavbarContent,
     NavbarItem,
-    Link,
+    Dropdown,
+    DropdownTrigger,
     Button,
+    DropdownMenu,
+    DropdownItem,
 } from '@nextui-org/react';
-import { DogImage } from '../DogImage';
 
+type DropdownItemType = {
+    key: string;
+    description: string;
+    title: string;
+    url?: string;
+};
+
+type DropdownItemListType = DropdownItemType[];
+
+const MENU_ITEMS_WEB_DEV: DropdownItemListType = [
+    {
+        key: 'simple_components',
+        description: 'Create simple React Components for various Use cases',
+        title: 'Simple Components',
+        url: '/webdev/exercises',
+    },
+    {
+        key: 'time_series',
+        description: 'Time Series data visualization for various use cases',
+        title: 'Time Series',
+    },
+    {
+        key: 'heatmaps',
+        description: 'Display heatmaps for various use cases',
+        title: 'Heatmaps',
+    },
+    {
+        key: 'geo_maps',
+        description: 'Use open source libraries to display geographical map components',
+        title: 'Geo Maps',
+    },
+];
+
+const MENU_ITEMS_DATA_ENGINEERING_ANALYTICS: DropdownItemListType = [
+    {
+        key: 'data_visualization',
+        description: 'Visualize data from any data source',
+        title: 'Data Visualization',
+    },
+    {
+        key: 'data_pipeline',
+        description: 'Create data pipelines beginning from any data source leading up to a controllable UI',
+        title: 'Data Pipeline',
+    },
+    {
+        key: 'databases',
+        description: 'Usage of various different database technologies ranging from relational to vector databases',
+        title: 'Databases',
+    },
+];
+
+const MENU_ITEMS_ALGORITHMS: DropdownItemListType = [
+    {
+        key: 'sorting',
+        description: 'Various sorting algorithms ranging from bubble sort to quick sort',
+        title: 'Sorting',
+    },
+    {
+        key: 'searching',
+        description: 'Various searching algorithms ranging from linear search to binary search',
+        title: 'Searching',
+    },
+    {
+        key: 'graph_theory',
+        description: 'Various graph algorithms ranging from depth first search to breadth first search',
+        title: 'Graph Theory',
+    },
+];
+
+const MENU_ITEMS_DATA_SCIENCE_ML_AI: DropdownItemListType = [
+    {
+        key: 'ml_examples',
+        description: 'Various machine learning examples ranging from linear regression to neural networks',
+        title: 'ML Examples',
+    },
+    {
+        key: 'ai_examples',
+        description: 'Various artificial intelligence examples ranging from Computer Vision to NLP',
+        title: 'AI Examples',
+    },
+    {
+        key: 'data_science',
+        description: 'Various data science examples ranging from data cleaning to data visualization',
+        title: 'Data Science',
+    },
+    {
+        key: 'rag',
+        description: 'Retrieval Augmented Generation examples',
+        title: 'Retrieval Augmented Generation',
+    },
+    {
+        key: 'embedding_visualization',
+        description: 'Visualize embeddings in 3D space',
+        title: 'Embedding Visualization',
+    },
+];
 export default function NavigationBar() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-    const menuItems = [
-        'Profile',
-        'Dashboard',
-        'Activity',
-        'Analytics',
-        'System',
-        'Deployments',
-        'My Settings',
-        'Team Settings',
-        'Help & Feedback',
-        'Log Out',
-    ];
-
     return (
-        <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
+        <Navbar
+            className="p-2 justify-start sm:h-[5.5rem]"
+            classNames={{
+                wrapper: 'justify-start',
+            }}
+            isBordered
+            isMenuOpen={isMenuOpen}
+            onMenuOpenChange={setIsMenuOpen}
+        >
             <NavbarContent className="sm:hidden" justify="start">
-                <NavbarMenuToggle aria-label={isMenuOpen ? 'Close menu' : 'Open menu'} />
+                <NavbarMenuToggle aria-label={isMenuOpen ? 'Close menu' : 'Open menu'} className="" />
             </NavbarContent>
 
-            <NavbarContent className="sm:hidden pr-3" justify="center">
+            {/* <NavbarContent className="sm:max-md:hidden pr-3" justify="center">
                 <NavbarBrand>
                     <DogImage name="Dahla" alt="Picture of my late Dog" />
                 </NavbarBrand>
-            </NavbarContent>
+            </NavbarContent> */}
 
-            <NavbarContent className="hidden sm:flex gap-4" justify="center">
-                <NavbarBrand>
-                    <DogImage name="Dahla" alt="Picture of my late Dog" />
-                </NavbarBrand>
-                <NavbarItem>
-                    <Link color="foreground" href="#">
-                        Features
-                    </Link>
-                </NavbarItem>
-                <NavbarItem isActive>
-                    <Link href="#" aria-current="page">
-                        Customers
-                    </Link>
-                </NavbarItem>
-                <NavbarItem>
-                    <Link color="foreground" href="#">
-                        Integrations
-                    </Link>
-                </NavbarItem>
+            <NavbarContent className="hidden sm:flex gap-4 ml-16" justify="start">
+                <Dropdown
+                    placement="bottom-start"
+                    classNames={{
+                        content: 'py-1 px-1 border border-default-200 bg-white',
+                    }}
+                >
+                    <NavbarItem>
+                        <DropdownTrigger>
+                            <Button
+                                disableRipple
+                                className="p-0 bg-transparent data-[hover=true]:bg-transparent focus:ring-1 focus:ring-slate-400"
+                                radius="sm"
+                                variant="light"
+                            >
+                                Web Development
+                            </Button>
+                        </DropdownTrigger>
+                    </NavbarItem>
+                    <DropdownMenu
+                        aria-label="Web Development"
+                        className="w-[340px]"
+                        itemClasses={{
+                            base: 'gap-4',
+                        }}
+                    >
+                        {MENU_ITEMS_WEB_DEV.map((item) => (
+                            <DropdownItem
+                                key={item.key}
+                                description={item.description}
+                                href={item.url ? item.url : '/'}
+                            >
+                                <span className="font-bold">{item.title}</span>
+                            </DropdownItem>
+                        ))}
+                    </DropdownMenu>
+                </Dropdown>
+                <Dropdown
+                    placement="bottom-start"
+                    classNames={{
+                        content: 'py-1 px-1 border border-default-200 bg-white',
+                    }}
+                >
+                    <NavbarItem>
+                        <DropdownTrigger>
+                            <Button
+                                disableRipple
+                                className="p-0 bg-transparent data-[hover=true]:bg-transparent"
+                                radius="sm"
+                                variant="light"
+                            >
+                                Data Eng. & Analytics
+                            </Button>
+                        </DropdownTrigger>
+                    </NavbarItem>
+                    <DropdownMenu
+                        aria-label="Data Engineering & Analytics"
+                        className="w-[340px]"
+                        itemClasses={{
+                            base: 'gap-4',
+                        }}
+                    >
+                        {MENU_ITEMS_DATA_ENGINEERING_ANALYTICS.map((item) => (
+                            <DropdownItem key={item.key} description={item.description}>
+                                <span className="font-bold">{item.title}</span>
+                            </DropdownItem>
+                        ))}
+                    </DropdownMenu>
+                </Dropdown>
+                <Dropdown
+                    placement="bottom-start"
+                    classNames={{
+                        content: 'py-1 px-1 border border-default-200 bg-white',
+                    }}
+                >
+                    <NavbarItem>
+                        <DropdownTrigger>
+                            <Button
+                                disableRipple
+                                className="p-0 bg-transparent data-[hover=true]:bg-transparent"
+                                radius="sm"
+                                variant="light"
+                            >
+                                Algorithms
+                            </Button>
+                        </DropdownTrigger>
+                    </NavbarItem>
+                    <DropdownMenu
+                        aria-label="Algorithms"
+                        className="w-[340px]"
+                        itemClasses={{
+                            base: 'gap-4',
+                        }}
+                    >
+                        {MENU_ITEMS_ALGORITHMS.map((item) => (
+                            <DropdownItem key={item.key} description={item.description}>
+                                <span className="font-bold">{item.title}</span>
+                            </DropdownItem>
+                        ))}
+                    </DropdownMenu>
+                </Dropdown>
+                <Dropdown
+                    placement="bottom-start"
+                    classNames={{
+                        content: 'py-1 px-1 border border-default-200 bg-white',
+                    }}
+                >
+                    <NavbarItem>
+                        <DropdownTrigger>
+                            <Button
+                                disableRipple
+                                className="p-0 bg-transparent data-[hover=true]:bg-transparent"
+                                radius="sm"
+                                variant="light"
+                            >
+                                Data Science, ML & AI
+                            </Button>
+                        </DropdownTrigger>
+                    </NavbarItem>
+                    <DropdownMenu
+                        aria-label="Data Science, ML & AI"
+                        className="w-[340px]"
+                        itemClasses={{
+                            base: 'gap-4',
+                        }}
+                    >
+                        {MENU_ITEMS_DATA_SCIENCE_ML_AI.map((item) => (
+                            <DropdownItem key={item.key} description={item.description}>
+                                <span className="font-bold">{item.title}</span>
+                            </DropdownItem>
+                        ))}
+                    </DropdownMenu>
+                </Dropdown>
             </NavbarContent>
-
-            <NavbarContent justify="end">
-                <NavbarItem className="hidden lg:flex">
-                    <Link href="#">Login</Link>
-                </NavbarItem>
-                <NavbarItem>
-                    <Button as={Link} color="warning" href="#" variant="flat">
-                        Sign Up
-                    </Button>
-                </NavbarItem>
-            </NavbarContent>
-
-            <NavbarMenu>
-                {menuItems.map((item, index) => (
-                    <NavbarMenuItem key={`${item}-${index}`}>
-                        <Link
-                            className="w-full"
-                            color={index === 2 ? 'warning' : index === menuItems.length - 1 ? 'danger' : 'foreground'}
-                            href="#"
-                            size="lg"
-                        >
-                            {item}
-                        </Link>
-                    </NavbarMenuItem>
-                ))}
-            </NavbarMenu>
         </Navbar>
     );
 }
