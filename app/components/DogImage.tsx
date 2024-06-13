@@ -5,6 +5,10 @@ type DogImageProps = {
     alt: string;
 };
 
+const imageStyle = {
+    borderRadius: '4px',
+};
+
 export function DogImage({ name, alt }: DogImageProps) {
-    return <Image src={`/images/${name}.jpg`} alt={alt} width={100} height={100} />;
+    return <Image src={`/images/${name}.jpg`} alt={alt} width={100} height={100} style={imageStyle} />;
 }
