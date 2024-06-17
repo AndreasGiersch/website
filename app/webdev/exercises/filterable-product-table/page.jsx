@@ -5,6 +5,8 @@ import { Fragment } from 'react';
 import { Switch } from '@nextui-org/switch';
 import { Input } from '@nextui-org/input';
 import { Button } from '@nextui-org/button';
+import { SearchIcon } from './SearchIcon';
+import { ChevronDownIcon, ChevronUpDownIcon, ChevronUpIcon } from '@heroicons/react/20/solid';
 
 /**
  * Exercise taken from
@@ -120,7 +122,7 @@ data.forEach((element) => {
 const ProductCategoryRow = (props) => {
     return (
         <tr colSpan={2}>
-            <td>{props.title}</td>
+            <td className="flex justify-center font-bold">{props.title}</td>
         </tr>
     );
 };
@@ -217,16 +219,52 @@ const ProductTable = (props) => {
         );
     });
     return (
-        <table className="center" style={tableStyle}>
+        <table className="center bg-gray-200 rounded-sm w-full" style={tableStyle}>
             <thead>
                 <tr>
                     <th style={cellStyle}>
-                        <Button onClick={props.onSortChange} value="Name">
+                        <Button
+                            onClick={props.onSortChange}
+                            value="Name"
+                            endContent={
+                                props.sort.includes('Name') ? (
+                                    props.sort.includes('asc') ? (
+                                        <ChevronDownIcon
+                                            className="h-5 w-5"
+                                            onClick={props.onSortChange}
+                                            value="Name"
+                                        />
+                                    ) : props.sort.includes('desc') ? (
+                                        <ChevronUpIcon className="h-5 w-5" onClick={props.onSortChange} value="Name" />
+                                    ) : null
+                                ) : (
+                                    <ChevronUpDownIcon className="h-5 w-5" onClick={props.onSortChange} value="Name" />
+                                )
+                            }
+                        >
                             Name
                         </Button>
                     </th>
                     <th style={cellStyle}>
-                        <Button onClick={props.onSortChange} value="Price">
+                        <Button
+                            onClick={props.onSortChange}
+                            value="Price"
+                            endContent={
+                                props.sort.includes('Name') ? (
+                                    props.sort.includes('asc') ? (
+                                        <ChevronDownIcon
+                                            className="h-5 w-5"
+                                            onClick={props.onSortChange}
+                                            value="Name"
+                                        />
+                                    ) : props.sort.includes('desc') ? (
+                                        <ChevronUpIcon className="h-5 w-5" onClick={props.onSortChange} value="Name" />
+                                    ) : null
+                                ) : (
+                                    <ChevronUpDownIcon className="h-5 w-5" onClick={props.onSortChange} value="Name" />
+                                )
+                            }
+                        >
                             Price
                         </Button>
                     </th>
@@ -239,11 +277,42 @@ const ProductTable = (props) => {
 
 const SearchBar = (props) => {
     return (
-        <div className="flex w-full flex-wrap md:flex-nowrap">
-            <Input onChange={props.onTextChange} type="email" placeholder="e.g. 'Football'" />
-            <div style={searchButtonStyle}>
+        <div className="flex w-full flex-wrap md:flex-nowrap justify-between items-center">
+            <div className="w-[60%] ml-2">
+                <Input
+                    radius="lg"
+                    classNames={{
+                        label: 'text-black/50 dark:text-white/90',
+                        input: [
+                            'bg-transparent',
+                            'text-black/90 dark:text-white/90',
+                            'placeholder:text-default-700/50 dark:placeholder:text-white/60',
+                        ],
+                        innerWrapper: 'bg-transparent',
+                        inputWrapper: [
+                            'shadow-xl',
+                            'bg-default-200/50',
+                            'dark:bg-default/60',
+                            'backdrop-blur-xl',
+                            'backdrop-saturate-200',
+                            'hover:bg-default-200/70',
+                            'dark:hover:bg-default/70',
+                            'group-data-[focus=true]:bg-default-200/50',
+                            'dark:group-data-[focus=true]:bg-default/60',
+                            '!cursor-text',
+                        ],
+                    }}
+                    onChange={props.onTextChange}
+                    type="email"
+                    placeholder="e.g. 'Football'"
+                    startContent={
+                        <SearchIcon className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0" />
+                    }
+                />
+            </div>
+            <div className="my-2 w-[30%]">
                 <Switch type="checkbox" isSelected={props.inStockOnly} onChange={props.onCheckChange}>
-                    Only show products in stock
+                    <span className="text-sm">Only show products in stock</span>
                 </Switch>
             </div>
         </div>
@@ -272,6 +341,8 @@ const FilterableProductTable = () => {
     const onCheckChange = () => {
         setInStockOnly((prevValue) => !prevValue);
     };
+
+    console.log(sort);
 
     return (
         <div className="rounded-md border-2 border-gray-300">
