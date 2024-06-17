@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 'use client';
 import React from 'react';
 import { Fragment } from 'react';
@@ -28,25 +29,6 @@ const cellStyleNotInStock = {
 const tableStyle = {
     marginLeft: 'auto',
     marginRight: 'auto',
-};
-
-const searchStyle = {
-    marginTop: '2em',
-    textAlign: 'center',
-};
-
-const searchButtonStyle = {
-    marginTop: '1em',
-    marginBottom: '1em',
-};
-
-const formControlStyle = {
-    width: '50%',
-    textAlign: 'center',
-};
-
-const formGroupStyle = {
-    textAlign: 'center',
 };
 
 /**
