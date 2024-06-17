@@ -36,16 +36,19 @@ const MENU_ITEMS_WEB_DEV: DropdownItemListType = [
         key: 'time_series',
         description: 'Time Series data visualization for various use cases',
         title: 'Time Series',
+        url: '/webdev/time-series',
     },
     {
         key: 'heatmaps',
         description: 'Display heatmaps for various use cases',
         title: 'Heatmaps',
+        url: '/webdev/heatmaps',
     },
     {
         key: 'geo_maps',
         description: 'Use open source libraries to display geographical map components',
         title: 'Geo Maps',
+        url: '/webdev/geo-maps',
     },
 ];
 
@@ -283,18 +286,7 @@ export default function NavigationBar() {
             <NavbarMenu>
                 {NAVBAR_MENU_ITEMS.map((item, index) => (
                     <NavbarMenuItem key={`${item}-${index}`}>
-                        <Link
-                            className="w-full"
-                            color={
-                                index === 2
-                                    ? 'warning'
-                                    : index === NAVBAR_MENU_ITEMS.length - 1
-                                      ? 'danger'
-                                      : 'foreground'
-                            }
-                            onClick={() => setIsMenuOpen(false)}
-                            href={item.path}
-                        >
+                        <Link className="w-full" onClick={() => setIsMenuOpen(false)} href={item.path}>
                             {item.name}
                         </Link>
                     </NavbarMenuItem>
