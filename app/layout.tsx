@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import NavigationBar from '@/components/navbar/NavigationBar';
+import Footer from './components/footer/footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,7 +20,8 @@ export default function RootLayout({
         <html lang="en">
             <body className={inter.className}>
                 <NavigationBar />
-                <div className="flex h-[calc(100vh-64px)] flex-col items-center">{children}</div>
+                <div className="flex h-[calc(100vh-64px-40px)] flex-col items-center">{children}</div>
+                <Footer />
             </body>
         </html>
     );
