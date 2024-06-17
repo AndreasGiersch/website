@@ -148,7 +148,7 @@ const ProductRow = (props) => {
  * @param {*} inStockOnly the user selected input from the checkbox
  * @param {*} sort the user selected sorting
  */
-function filterProducts(products, category, filterText, inStockOnly, sort) {
+function filterProducts(products, category, filterText, inStockOnly, sortingKey, sortingDirection) {
     let filteredProducts = products.filter((product) => product.category === category);
 
     if (filterText) {
@@ -161,11 +161,11 @@ function filterProducts(products, category, filterText, inStockOnly, sort) {
         filteredProducts = filteredProducts.filter((product) => product.stocked);
     }
 
-    if (sort) {
+    if (sortingKey && sortingDirection) {
         filteredProducts.sort((a, b) => {
             let aPrice;
             let bPrice;
-            switch (sort) {
+            switch (sortingKey + '/' + sortingDirection) {
                 case 'Name/asc':
                     if (a.name < b.name) return -1;
                     return a.name > b.name ? 1 : 0;
@@ -198,12 +198,12 @@ function filterProducts(products, category, filterText, inStockOnly, sort) {
     return filteredProducts;
 }
 
-const ProductTable = (props) => {
+const ProductTable = ({ products, filterText, inStockOnly, sortingKey, sortingDirection, onSortChange }) => {
     const productsPerCategory = categories.map((category) => {
         return (
             <Fragment key={category}>
                 <ProductCategoryRow title={category} />
-                {filterProducts(props.products, category, props.filterText, props.inStockOnly, props.sort).map(
+                {filterProducts(products, category, filterText, inStockOnly, sortingKey, sortingDirection).map(
                     (product) => {
                         return (
                             <ProductRow
@@ -218,27 +218,24 @@ const ProductTable = (props) => {
             </Fragment>
         );
     });
+
     return (
         <table className="center bg-gray-200 rounded-sm w-full" style={tableStyle}>
             <thead>
                 <tr>
                     <th style={cellStyle}>
                         <Button
-                            onClick={props.onSortChange}
+                            onClick={onSortChange}
                             value="Name"
                             endContent={
-                                props.sort.includes('Name') ? (
-                                    props.sort.includes('asc') ? (
-                                        <ChevronDownIcon
-                                            className="h-5 w-5"
-                                            onClick={props.onSortChange}
-                                            value="Name"
-                                        />
-                                    ) : props.sort.includes('desc') ? (
-                                        <ChevronUpIcon className="h-5 w-5" onClick={props.onSortChange} value="Name" />
+                                sortingKey === 'Name' ? (
+                                    sortingDirection === 'asc' ? (
+                                        <ChevronDownIcon className="h-5 w-5" />
+                                    ) : sortingDirection === 'desc' ? (
+                                        <ChevronUpIcon className="h-5 w-5" />
                                     ) : null
                                 ) : (
-                                    <ChevronUpDownIcon className="h-5 w-5" onClick={props.onSortChange} value="Name" />
+                                    <ChevronUpDownIcon className="h-5 w-5" />
                                 )
                             }
                         >
@@ -247,21 +244,17 @@ const ProductTable = (props) => {
                     </th>
                     <th style={cellStyle}>
                         <Button
-                            onClick={props.onSortChange}
+                            onClick={onSortChange}
                             value="Price"
                             endContent={
-                                props.sort.includes('Name') ? (
-                                    props.sort.includes('asc') ? (
-                                        <ChevronDownIcon
-                                            className="h-5 w-5"
-                                            onClick={props.onSortChange}
-                                            value="Name"
-                                        />
-                                    ) : props.sort.includes('desc') ? (
-                                        <ChevronUpIcon className="h-5 w-5" onClick={props.onSortChange} value="Name" />
+                                sortingKey === 'Price' ? (
+                                    sortingDirection === 'asc' ? (
+                                        <ChevronDownIcon className="h-5 w-5" />
+                                    ) : sortingDirection === 'desc' ? (
+                                        <ChevronUpIcon className="h-5 w-5" />
                                     ) : null
                                 ) : (
-                                    <ChevronUpDownIcon className="h-5 w-5" onClick={props.onSortChange} value="Name" />
+                                    <ChevronUpDownIcon className="h-5 w-5" />
                                 )
                             }
                         >
@@ -322,16 +315,15 @@ const SearchBar = (props) => {
 const FilterableProductTable = () => {
     const [filterText, setFilterText] = React.useState('');
     const [inStockOnly, setInStockOnly] = React.useState(false);
-    const [sort, setSort] = React.useState('');
+
+    const [sortingKey, setSortingKey] = React.useState('');
+    const [sortingDirection, setSortingDirection] = React.useState('');
 
     const onSortChange = (e) => {
-        let sorting;
-        if (sort.includes('asc')) {
-            sorting = 'desc';
-        } else {
-            sorting = 'asc';
-        }
-        setSort(`${e.target.value}/${sorting}`);
+        const newSortingKey = e.target.value;
+        const newSortingDirection = sortingDirection === 'asc' ? 'desc' : 'asc';
+        setSortingKey(newSortingKey);
+        setSortingDirection(newSortingDirection);
     };
 
     const onTextChange = (e) => {
@@ -341,8 +333,6 @@ const FilterableProductTable = () => {
     const onCheckChange = () => {
         setInStockOnly((prevValue) => !prevValue);
     };
-
-    console.log(sort);
 
     return (
         <div className="rounded-md border-2 border-gray-300">
@@ -357,7 +347,8 @@ const FilterableProductTable = () => {
                 filterText={filterText}
                 inStockOnly={inStockOnly}
                 onSortChange={onSortChange}
-                sort={sort}
+                sortingKey={sortingKey}
+                sortingDirection={sortingDirection}
             />
         </div>
     );
