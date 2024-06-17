@@ -11,6 +11,8 @@ import {
     DropdownMenu,
     DropdownItem,
 } from '@nextui-org/react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 type DropdownItemType = {
     key: string;
@@ -113,7 +115,7 @@ export default function NavigationBar() {
 
     return (
         <Navbar
-            className="p-2 justify-start sm:h-[5.5rem]"
+            className="p-2 justify-start h-16"
             classNames={{
                 wrapper: 'justify-start',
             }}
@@ -124,12 +126,14 @@ export default function NavigationBar() {
             <NavbarContent className="sm:hidden" justify="start">
                 <NavbarMenuToggle aria-label={isMenuOpen ? 'Close menu' : 'Open menu'} className="" />
             </NavbarContent>
-
-            {/* <NavbarContent className="sm:max-md:hidden pr-3" justify="center">
-                <NavbarBrand>
-                    <DogImage name="Dahla" alt="Picture of my late Dog" />
-                </NavbarBrand>
-            </NavbarContent> */}
+            <div className="flex items-center">
+                <Link
+                    href="/"
+                    className="flex items-center rounded transition duration-200 hover:bg-neutral-200 hover:text-neutral-300 hover:ease-in-out focus:text-neutral-300"
+                >
+                    <Image src="/images/icons8-data-science-64.png" alt="Logo" width={48} height={48} />
+                </Link>
+            </div>
 
             <NavbarContent className="hidden sm:flex gap-4 ml-16" justify="start">
                 <Dropdown
