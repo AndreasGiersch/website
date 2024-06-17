@@ -10,6 +10,8 @@ import {
     Button,
     DropdownMenu,
     DropdownItem,
+    NavbarMenuItem,
+    NavbarMenu,
 } from '@nextui-org/react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -110,6 +112,14 @@ const MENU_ITEMS_DATA_SCIENCE_ML_AI: DropdownItemListType = [
         title: 'Embedding Visualization',
     },
 ];
+
+const NAVBAR_MENU_ITEMS = [
+    { name: 'Web Development', path: '/webdev' },
+    { name: 'Data Engineering & Analytics', path: '/data-engineering-analytics' },
+    { name: 'Algorithms', path: '/algorithms' },
+    { name: 'Data Science, ML & AI', path: '/data-science-ml-ai' },
+];
+
 export default function NavigationBar() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
@@ -118,13 +128,14 @@ export default function NavigationBar() {
             className="p-2 justify-start h-16"
             classNames={{
                 wrapper: 'justify-start',
+                content: ['data-[justify=start]:grow-0'],
             }}
             isBordered
             isMenuOpen={isMenuOpen}
             onMenuOpenChange={setIsMenuOpen}
         >
-            <NavbarContent className="sm:hidden" justify="start">
-                <NavbarMenuToggle aria-label={isMenuOpen ? 'Close menu' : 'Open menu'} className="" />
+            <NavbarContent className="sm:hidden">
+                <NavbarMenuToggle aria-label={isMenuOpen ? 'Close menu' : 'Open menu'} className="mr-4 sm:mr-0" />
             </NavbarContent>
             <div className="flex items-center">
                 <Link
@@ -150,7 +161,7 @@ export default function NavigationBar() {
                                 radius="sm"
                                 variant="light"
                             >
-                                Web Development
+                                {NAVBAR_MENU_ITEMS[0].name}
                             </Button>
                         </DropdownTrigger>
                     </NavbarItem>
@@ -186,7 +197,7 @@ export default function NavigationBar() {
                                 radius="sm"
                                 variant="light"
                             >
-                                Data Eng. & Analytics
+                                {NAVBAR_MENU_ITEMS[1].name}
                             </Button>
                         </DropdownTrigger>
                     </NavbarItem>
@@ -218,7 +229,7 @@ export default function NavigationBar() {
                                 radius="sm"
                                 variant="light"
                             >
-                                Algorithms
+                                {NAVBAR_MENU_ITEMS[2].name}
                             </Button>
                         </DropdownTrigger>
                     </NavbarItem>
@@ -250,7 +261,7 @@ export default function NavigationBar() {
                                 radius="sm"
                                 variant="light"
                             >
-                                Data Science, ML & AI
+                                {NAVBAR_MENU_ITEMS[3].name}
                             </Button>
                         </DropdownTrigger>
                     </NavbarItem>
@@ -269,6 +280,26 @@ export default function NavigationBar() {
                     </DropdownMenu>
                 </Dropdown>
             </NavbarContent>
+            <NavbarMenu>
+                {NAVBAR_MENU_ITEMS.map((item, index) => (
+                    <NavbarMenuItem key={`${item}-${index}`}>
+                        <Link
+                            className="w-full"
+                            color={
+                                index === 2
+                                    ? 'warning'
+                                    : index === NAVBAR_MENU_ITEMS.length - 1
+                                      ? 'danger'
+                                      : 'foreground'
+                            }
+                            onClick={() => setIsMenuOpen(false)}
+                            href={item.path}
+                        >
+                            {item.name}
+                        </Link>
+                    </NavbarMenuItem>
+                ))}
+            </NavbarMenu>
         </Navbar>
     );
 }
