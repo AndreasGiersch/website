@@ -117,10 +117,10 @@ const MENU_ITEMS_DATA_SCIENCE_ML_AI: DropdownItemListType = [
 ];
 
 const NAVBAR_MENU_ITEMS = [
-    { name: 'Web Development', path: '/webdev' },
-    { name: 'Data Engineering & Analytics', path: '/data-engineering-analytics' },
-    { name: 'Algorithms', path: '/algorithms' },
-    { name: 'Data Science, ML & AI', path: '/data-science-ml-ai' },
+    { name: 'Web Development', path: '/webdev', shortName: 'Web Dev' },
+    { name: 'Data Engineering & Analytics', path: '/data-engineering-analytics', shortName: 'Data Eng.' },
+    { name: 'Algorithms', path: '/algorithms', shortName: 'Algorithms' },
+    { name: 'Data Science, ML & AI', path: '/data-science-ml-ai', shortName: 'Data Science' },
 ];
 
 export default function NavigationBar() {
@@ -140,7 +140,7 @@ export default function NavigationBar() {
             <NavbarContent className="sm:hidden">
                 <NavbarMenuToggle aria-label={isMenuOpen ? 'Close menu' : 'Open menu'} className="mr-4 sm:mr-0" />
             </NavbarContent>
-            <div className="flex items-center">
+            <div className="flex items-center shrink-0">
                 <Link
                     href="/"
                     className="flex items-center rounded transition duration-200 hover:bg-neutral-200 hover:text-neutral-300 hover:ease-in-out focus:text-neutral-300"
@@ -149,7 +149,7 @@ export default function NavigationBar() {
                 </Link>
             </div>
 
-            <NavbarContent className="hidden sm:flex gap-4 ml-16" justify="start">
+            <NavbarContent className="hidden sm:flex gap-4 ml-16 sm:max-[820px]:ml-4" justify="start">
                 <Dropdown
                     placement="bottom-start"
                     classNames={{
@@ -164,7 +164,9 @@ export default function NavigationBar() {
                                 radius="sm"
                                 variant="light"
                             >
-                                {NAVBAR_MENU_ITEMS[0].name}
+                                <span className="sm:max-md:w-[120px] sm:max-md:truncate">
+                                    {NAVBAR_MENU_ITEMS[0].name}
+                                </span>
                             </Button>
                         </DropdownTrigger>
                     </NavbarItem>
@@ -200,7 +202,9 @@ export default function NavigationBar() {
                                 radius="sm"
                                 variant="light"
                             >
-                                {NAVBAR_MENU_ITEMS[1].name}
+                                <span className="sm:max-md:w-[120px] sm:max-md:truncate">
+                                    {NAVBAR_MENU_ITEMS[1].name}
+                                </span>
                             </Button>
                         </DropdownTrigger>
                     </NavbarItem>
@@ -232,7 +236,9 @@ export default function NavigationBar() {
                                 radius="sm"
                                 variant="light"
                             >
-                                {NAVBAR_MENU_ITEMS[2].name}
+                                <span className="sm:max-md:w-[120px] sm:max-md:truncate">
+                                    {NAVBAR_MENU_ITEMS[2].name}
+                                </span>
                             </Button>
                         </DropdownTrigger>
                     </NavbarItem>
@@ -264,7 +270,9 @@ export default function NavigationBar() {
                                 radius="sm"
                                 variant="light"
                             >
-                                {NAVBAR_MENU_ITEMS[3].name}
+                                <span className="sm:max-md:w-[120px] sm:max-md:truncate">
+                                    {NAVBAR_MENU_ITEMS[3].name}
+                                </span>
                             </Button>
                         </DropdownTrigger>
                     </NavbarItem>
