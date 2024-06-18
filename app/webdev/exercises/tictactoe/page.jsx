@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import './TicTacToe.css';
 import { useState } from 'react';
-import { Button } from '@nextui-org/button';
 
 function Square({ value, onSquareClick }) {
     return (
@@ -34,29 +33,51 @@ function calculateWinner(squares) {
     return null;
 }
 
-function Board() {
-    const [xIsNext, setXIsNext] = useState(true);
-    const [squares, setSquares] = useState(Array(9).fill(null));
-    const [canReset, setCanReset] = useState(false);
-    const [winner, setWinner] = useState('');
+const Game = () => {
+    const [history, setHistory] = useState([Array(9).fill(null)]);
+    const [currentMove, setCurrentMove] = useState(0);
+    const xIsNext = currentMove % 2 === 0;
+    const currentSquares = history[currentMove];
 
-    useEffect(() => {
-        const calcWinner = calculateWinner(squares);
-        if (calcWinner) {
-            setCanReset(true);
-            setWinner(calcWinner);
-        }
-    }, [squares]);
-
-    function resetGame() {
-        setSquares(Array(9).fill(null));
-        setXIsNext(true);
-        setCanReset(false);
-        setWinner('');
+    function handlePlay(nextSquares) {
+        const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+        setHistory(nextHistory);
+        setCurrentMove(nextHistory.length - 1);
     }
 
+    function jumpTo(nextMove) {
+        setCurrentMove(nextMove);
+    }
+
+    const moves = history.map((squares, move) => {
+        let description;
+        if (move > 0) {
+            description = 'Go to move #' + move;
+        } else {
+            description = 'Go to game start';
+        }
+        return (
+            <li key={move}>
+                <button onClick={() => jumpTo(move)}>{description}</button>
+            </li>
+        );
+    });
+
+    return (
+        <div className="game w-[340px]">
+            <div className="game-board w-full">
+                <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+            </div>
+            <div className="game-info">
+                <ol>{moves}</ol>
+            </div>
+        </div>
+    );
+};
+
+function Board({ xIsNext, squares, onPlay }) {
     function handleClick(i) {
-        if (winner || squares[i]) {
+        if (calculateWinner(squares) || squares[i]) {
             return;
         }
         const nextSquares = squares.slice();
@@ -65,10 +86,10 @@ function Board() {
         } else {
             nextSquares[i] = 'O';
         }
-        setSquares(nextSquares);
-        setXIsNext(!xIsNext);
+        onPlay(nextSquares);
     }
 
+    const winner = calculateWinner(squares);
     let status;
     if (winner) {
         status = 'Winner: ' + winner;
@@ -78,12 +99,7 @@ function Board() {
 
     return (
         <>
-            <div className="game-status flex gap-4 w-full items-center">
-                {status}
-                <Button className="bg-slate-400 rounded-sm" disabled={!canReset} onClick={resetGame}>
-                    Reset
-                </Button>
-            </div>
+            <div className="game-status flex gap-4 w-full items-center">{status}</div>
             <div className="game-board items-center justify-center">
                 <div className="board-row">
                     <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
@@ -104,23 +120,4 @@ function Board() {
         </>
     );
 }
-
-class TicTacToe extends React.Component {
-    render() {
-        return (
-            <div className="game w-[340px]">
-                <div className="game-board w-full">
-                    <Board />
-                </div>
-                <div className="game-info">
-                    <div>{/* status */}</div>
-                    <ol>{/* TODO */}</ol>
-                </div>
-            </div>
-        );
-    }
-}
-
-// ========================================
-
-export default TicTacToe;
+export default Game;
