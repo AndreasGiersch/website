@@ -43,5 +43,8 @@
   },
   "bugs": {
     "url": "https://github.com/AndreasGiersch/website/issues"
+  },
+  "engines": {
+    "node": ">=21.0.0"
   }
 }
