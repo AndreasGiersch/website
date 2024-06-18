@@ -1,7 +1,7 @@
 {
   "name": "website",
   "version": "0.1.0",
-  "description": "A portfolio website showing the mostççotable Repos and other Coding-Related Stuff",
+  "description": "A portfolio website showing the most notable Repos and other Coding-Related Stuff",
   "private": true,
   "author": "Andreas Giersch <andreasgiersch@web.de>",
   "scripts": {
