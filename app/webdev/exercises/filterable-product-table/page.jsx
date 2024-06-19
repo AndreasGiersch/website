@@ -8,6 +8,7 @@ import { Input } from '@nextui-org/input';
 import { Button } from '@nextui-org/button';
 import { SearchIcon } from './SearchIcon';
 import { ChevronDownIcon, ChevronUpDownIcon, ChevronUpIcon } from '@heroicons/react/20/solid';
+import BackButton from '@/components/BackButton';
 
 /**
  * Exercise taken from
@@ -317,21 +318,31 @@ const FilterableProductTable = () => {
     };
 
     return (
-        <div className="rounded-md border-2 border-gray-300">
-            <SearchBar
-                filterText={filterText}
-                inStockOnly={inStockOnly}
-                onTextChange={onTextChange}
-                onCheckChange={onCheckChange}
-            />
-            <ProductTable
-                products={data}
-                filterText={filterText}
-                inStockOnly={inStockOnly}
-                onSortChange={onSortChange}
-                sortingKey={sortingKey}
-                sortingDirection={sortingDirection}
-            />
+        <div className="flex w-full h-full flex-col items-center justify-start">
+            <div id="content-top" className="flex w-full h-32 pl-10 pt-6">
+                <h3 className="text-3xl font-bold dark:text-white">Filterable Product Table</h3>
+            </div>
+            <div id="content-middle" className="rounded-md border-2 border-gray-300">
+                <SearchBar
+                    filterText={filterText}
+                    inStockOnly={inStockOnly}
+                    onTextChange={onTextChange}
+                    onCheckChange={onCheckChange}
+                />
+                <ProductTable
+                    products={data}
+                    filterText={filterText}
+                    inStockOnly={inStockOnly}
+                    onSortChange={onSortChange}
+                    sortingKey={sortingKey}
+                    sortingDirection={sortingDirection}
+                />
+            </div>
+            <div id="content-bottom" className="flex w-full h-32 pl-10 pt-10">
+                <BackButton path={'/webdev/exercises'} className="bg-slate-200 rounded-sm border">
+                    Go Back
+                </BackButton>
+            </div>
         </div>
     );
 };
