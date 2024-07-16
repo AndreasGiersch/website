@@ -1,8 +1,7 @@
 import React from 'react';
 
-import Link from 'next/link';
-import { Card, CardHeader, CardBody, CardFooter, Divider, Image } from '@nextui-org/react';
 import BackButton from '@/components/BackButton';
+import CustomCard from '@/components/CustomCard/CustomCard';
 
 const webdevPages = [
     {
@@ -14,40 +13,6 @@ const webdevPages = [
     { path: '/heatmaps', name: 'Heatmaps for various data formats', description: 'Sample Description. Edit later.' },
     { path: '/time-series', name: 'Time Series Data Visualization', description: 'Sample Description. Edit later.' },
 ];
-
-type webdevCardProps = {
-    index: number;
-    path: string;
-    name: string;
-    description: string;
-};
-
-const webdevCard = ({ index, path, name, description }: webdevCardProps) => {
-    return (
-        <Card key={index} className="max-w-[400px]">
-            <CardHeader className="flex gap-3">
-                <Image
-                    alt="Exercise Image"
-                    height={40}
-                    radius="sm"
-                    src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
-                    width={40}
-                />
-                <div className="flex flex-col">
-                    <p className="text-md">{name}</p>
-                </div>
-            </CardHeader>
-            <Divider />
-            <CardBody>
-                <p>{description}</p>
-            </CardBody>
-            <Divider />
-            <CardFooter>
-                <Link href={path}>Go to Exercise: {name}</Link>
-            </CardFooter>
-        </Card>
-    );
-};
 
 const Webdev = () => {
     return (
@@ -61,8 +26,12 @@ const Webdev = () => {
             <div id="content-middle" className="flex w-full grow items-center justify-center">
                 <div className="grid grid-cols-3 gap-4">
                     {webdevPages.map((page, index) => {
-                        const fullPath = `/webdev/exercises/${page.path}`;
-                        return webdevCard({ index, path: fullPath, name: page.name, description: page.description });
+                        return CustomCard({
+                            index,
+                            path: `/webdev/exercises/${page.path}`,
+                            name: page.name,
+                            description: page.description,
+                        });
                     })}
                 </div>
             </div>
