@@ -5,6 +5,8 @@ import React from 'react';
 import './TicTacToe.css';
 import { useState } from 'react';
 
+import BackButton from '@/components/BackButton';
+
 function Square({ value, onSquareClick }) {
     return (
         <button className="square" onClick={onSquareClick}>
@@ -32,48 +34,6 @@ function calculateWinner(squares) {
     }
     return null;
 }
-
-const Game = () => {
-    const [history, setHistory] = useState([Array(9).fill(null)]);
-    const [currentMove, setCurrentMove] = useState(0);
-    const xIsNext = currentMove % 2 === 0;
-    const currentSquares = history[currentMove];
-
-    function handlePlay(nextSquares) {
-        const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
-        setHistory(nextHistory);
-        setCurrentMove(nextHistory.length - 1);
-    }
-
-    function jumpTo(nextMove) {
-        setCurrentMove(nextMove);
-    }
-
-    const moves = history.map((squares, move) => {
-        let description;
-        if (move > 0) {
-            description = 'Go to move #' + move;
-        } else {
-            description = 'Go to game start';
-        }
-        return (
-            <li key={move}>
-                <button onClick={() => jumpTo(move)}>{description}</button>
-            </li>
-        );
-    });
-
-    return (
-        <div className="game w-[340px]">
-            <div className="game-board w-full">
-                <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
-            </div>
-            <div className="game-info">
-                <ol>{moves}</ol>
-            </div>
-        </div>
-    );
-};
 
 function Board({ xIsNext, squares, onPlay }) {
     function handleClick(i) {
@@ -120,4 +80,60 @@ function Board({ xIsNext, squares, onPlay }) {
         </>
     );
 }
+
+const Game = () => {
+    const [history, setHistory] = useState([Array(9).fill(null)]);
+    const [currentMove, setCurrentMove] = useState(0);
+    const xIsNext = currentMove % 2 === 0;
+    const currentSquares = history[currentMove];
+
+    function handlePlay(nextSquares) {
+        const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+        setHistory(nextHistory);
+        setCurrentMove(nextHistory.length - 1);
+    }
+
+    function jumpTo(nextMove) {
+        setCurrentMove(nextMove);
+    }
+
+    const moves = history.map((squares, move) => {
+        let description;
+        if (move > 0) {
+            description = 'Go to move #' + move;
+        } else {
+            description = 'Go to game start';
+        }
+        return (
+            <li key={move}>
+                <button onClick={() => jumpTo(move)}>{description}</button>
+            </li>
+        );
+    });
+
+    return (
+        <div className="flex w-full h-full flex-col items-center justify-start">
+            <div id="content-top" className="flex w-full h-32 pl-10 pt-6">
+                <h3 className="text-3xl font-bold dark:text-white">Tic Tac Toe</h3>
+            </div>
+            <div id="content-middle" className="rounded-md border-2 border-gray-300">
+                <div className="game w-[340px]">
+                    <div className="game-board w-full">
+                        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+                    </div>
+                    <div className="game-info">
+                        <ol>{moves}</ol>
+                    </div>
+                </div>
+            </div>
+
+            <div id="content-bottom" className="flex w-full h-32 pl-10 pt-10">
+                <BackButton path={'/webdev/exercises'} className="bg-slate-200 rounded-sm border">
+                    Go Back
+                </BackButton>
+            </div>
+        </div>
+    );
+};
+
 export default Game;
