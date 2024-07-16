@@ -58,7 +58,7 @@ const Exercises = () => {
                 </div>
             </div>
             <div id="content-bottom" className="flex w-full h-32 pl-10 pt-10">
-                <BackButton path={'/'} className="bg-slate-200 rounded-sm border">
+                <BackButton path={'/webdev'} className="bg-slate-200 rounded-sm border">
                     Go Back
                 </BackButton>
             </div>
