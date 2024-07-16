@@ -28,7 +28,7 @@ const Webdev = () => {
                     {webdevPages.map((page, index) => {
                         return CustomCard({
                             index,
-                            path: `/webdev/exercises/${page.path}`,
+                            path: `/webdev${page.path}`,
                             name: page.name,
                             description: page.description,
                         });
