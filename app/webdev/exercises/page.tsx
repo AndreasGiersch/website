@@ -13,7 +13,14 @@ const exercisePages = [
     { path: '/tictactoe', name: 'Tic Tac Toe', description: 'A simple tic-tac-toe game.' },
 ];
 
-const exerciseCard = ({ index, path, name, description }) => {
+type exerciseCardProps = {
+    index: number;
+    path: string;
+    name: string;
+    description: string;
+};
+
+const exerciseCard = ({ index, path, name, description }: exerciseCardProps) => {
     return (
         <Card key={index} className="max-w-[400px]">
             <CardHeader className="flex gap-3">

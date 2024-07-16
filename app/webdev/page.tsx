@@ -15,7 +15,14 @@ const webdevPages = [
     { path: '/time-series', name: 'Time Series Data Visualization', description: 'Sample Description. Edit later.' },
 ];
 
-const webdevCard = ({ index, path, name, description }) => {
+type webdevCardProps = {
+    index: number;
+    path: string;
+    name: string;
+    description: string;
+};
+
+const webdevCard = ({ index, path, name, description }: webdevCardProps) => {
     return (
         <Card key={index} className="max-w-[400px]">
             <CardHeader className="flex gap-3">
