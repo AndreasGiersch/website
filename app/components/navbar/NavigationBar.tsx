@@ -57,16 +57,19 @@ const MENU_ITEMS_DATA_ENGINEERING_ANALYTICS: DropdownItemListType = [
         key: 'data_visualization',
         description: 'Visualize data from any data source',
         title: 'Data Visualization',
+        url: '/data-engineering-analytics/data-visualization',
     },
     {
         key: 'data_pipeline',
         description: 'Create data pipelines beginning from any data source leading up to a controllable UI',
         title: 'Data Pipeline',
+        url: '/data-engineering-analytics/data-pipeline',
     },
     {
         key: 'databases',
         description: 'Usage of various different database technologies ranging from relational to vector databases',
         title: 'Databases',
+        url: '/data-engineering-analytics/databases',
     },
 ];
 
@@ -216,7 +219,11 @@ export default function NavigationBar() {
                         }}
                     >
                         {MENU_ITEMS_DATA_ENGINEERING_ANALYTICS.map((item) => (
-                            <DropdownItem key={item.key} description={item.description}>
+                            <DropdownItem
+                                key={item.key}
+                                description={item.description}
+                                href={item.url ? item.url : '/'}
+                            >
                                 <span className="font-bold">{item.title}</span>
                             </DropdownItem>
                         ))}
