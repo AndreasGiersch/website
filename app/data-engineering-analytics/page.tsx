@@ -1,6 +1,6 @@
+'use client';
 import BackButton from '@/components/BackButton';
 import CustomCard from '@/components/CustomCard/CustomCard';
-import React from 'react';
 
 const DataEngineeringAnalyticsPages = [
     {
