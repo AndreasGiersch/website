@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 import { Button } from '@nextui-org/react';
 import type { ButtonVariantProps } from '@nextui-org/react';
@@ -20,7 +21,7 @@ const BackButton = (props: PropsWithChildren<BackButtonProps>) => {
             color={color}
             variant={variant}
             type="button"
-            className={className}
+            className={`${className} text-gray-800`}
             startContent={<ArrowLeftIcon className="size-5" />}
         >
             {children}

@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 import { Card, CardHeader, CardBody, CardFooter, Divider, Image } from '@nextui-org/react';
 

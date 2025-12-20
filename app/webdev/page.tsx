@@ -1,5 +1,4 @@
-import React from 'react';
-
+'use client';
 import BackButton from '@/components/BackButton';
 import CustomCard from '@/components/CustomCard/CustomCard';
 
