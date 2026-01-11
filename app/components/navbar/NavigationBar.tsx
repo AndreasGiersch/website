@@ -1,129 +1,21 @@
 'use client';
 import React from 'react';
-import {
-    Navbar,
-    NavbarMenuToggle,
-    NavbarContent,
-    NavbarItem,
-    Dropdown,
-    DropdownTrigger,
-    Button,
-    DropdownMenu,
-    DropdownItem,
-    NavbarMenuItem,
-    NavbarMenu,
-} from '@nextui-org/react';
+import { Navbar, NavbarMenuToggle, NavbarContent, NavbarItem, NavbarMenuItem, NavbarMenu } from '@nextui-org/react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-type DropdownItemType = {
-    key: string;
-    description: string;
-    title: string;
-    url?: string;
+type NavbarItemType = {
+    name: string;
+    path: string;
+    shortName: string;
 };
 
-type DropdownItemListType = DropdownItemType[];
-
-const MENU_ITEMS_WEB_DEV: DropdownItemListType = [
-    {
-        key: 'simple_components',
-        description: 'Create simple React Components for various Use cases',
-        title: 'Simple Components',
-        url: '/webdev/exercises',
-    },
-    {
-        key: 'time_series',
-        description: 'Time Series data visualization for various use cases',
-        title: 'Time Series',
-        url: '/webdev/time-series',
-    },
-    {
-        key: 'heatmaps',
-        description: 'Display heatmaps for various use cases',
-        title: 'Heatmaps',
-        url: '/webdev/heatmaps',
-    },
-    {
-        key: 'geo_maps',
-        description: 'Use open source libraries to display geographical map components',
-        title: 'Geo Maps',
-        url: '/webdev/geo-maps',
-    },
-];
-
-const MENU_ITEMS_DATA_ENGINEERING_ANALYTICS: DropdownItemListType = [
-    {
-        key: 'data_visualization',
-        description: 'Visualize data from any data source',
-        title: 'Data Visualization',
-        url: '/data-engineering-analytics/data-visualization',
-    },
-    {
-        key: 'data_pipeline',
-        description: 'Create data pipelines beginning from any data source leading up to a controllable UI',
-        title: 'Data Pipeline',
-        url: '/data-engineering-analytics/data-pipeline',
-    },
-    {
-        key: 'databases',
-        description: 'Usage of various different database technologies ranging from relational to vector databases',
-        title: 'Databases',
-        url: '/data-engineering-analytics/databases',
-    },
-];
-
-const MENU_ITEMS_ALGORITHMS: DropdownItemListType = [
-    {
-        key: 'sorting',
-        description: 'Various sorting algorithms ranging from bubble sort to quick sort',
-        title: 'Sorting',
-    },
-    {
-        key: 'searching',
-        description: 'Various searching algorithms ranging from linear search to binary search',
-        title: 'Searching',
-    },
-    {
-        key: 'graph_theory',
-        description: 'Various graph algorithms ranging from depth first search to breadth first search',
-        title: 'Graph Theory',
-    },
-];
-
-const MENU_ITEMS_DATA_SCIENCE_ML_AI: DropdownItemListType = [
-    {
-        key: 'ml_examples',
-        description: 'Various machine learning examples ranging from linear regression to neural networks',
-        title: 'ML Examples',
-    },
-    {
-        key: 'ai_examples',
-        description: 'Various artificial intelligence examples ranging from Computer Vision to NLP',
-        title: 'AI Examples',
-    },
-    {
-        key: 'data_science',
-        description: 'Various data science examples ranging from data cleaning to data visualization',
-        title: 'Data Science',
-    },
-    {
-        key: 'rag',
-        description: 'Retrieval Augmented Generation examples',
-        title: 'Retrieval Augmented Generation',
-    },
-    {
-        key: 'embedding_visualization',
-        description: 'Visualize embeddings in 3D space',
-        title: 'Embedding Visualization',
-    },
-];
-
-const NAVBAR_MENU_ITEMS = [
-    { name: 'Web Development', path: '/webdev', shortName: 'Web Dev' },
-    { name: 'Data Engineering & Analytics', path: '/data-engineering-analytics', shortName: 'Data Eng.' },
-    { name: 'Algorithms', path: '/algorithms', shortName: 'Algorithms' },
-    { name: 'Data Science, ML & AI', path: '/data-science-ml-ai', shortName: 'Data Science' },
+const NAVBAR_ITEMS: NavbarItemType[] = [
+    { name: 'About', path: '/about', shortName: 'About' },
+    { name: 'Work', path: '/work', shortName: 'Work' },
+    { name: 'Projects', path: '/projects', shortName: 'Projects' },
+    { name: 'Resume', path: '/resume', shortName: 'Resume' },
+    { name: 'Contact', path: '/contact', shortName: 'Contact' },
 ];
 
 export default function NavigationBar() {
@@ -143,170 +35,56 @@ export default function NavigationBar() {
             <NavbarContent className="sm:hidden">
                 <NavbarMenuToggle aria-label={isMenuOpen ? 'Close menu' : 'Open menu'} className="mr-4 sm:mr-0" />
             </NavbarContent>
-            <div className="flex items-center shrink-0">
-                <Link
-                    href="/"
-                    className="flex items-center rounded transition duration-200 hover:bg-gray-400 hover:text-gray-400 hover:ease-in-out focus:text-neutral-300"
-                >
-                    <Image src="/images/icons8-data-science-64.png" alt="Logo" width={48} height={48} />
-                </Link>
-            </div>
+
+            <Logo />
 
             <NavbarContent className="hidden sm:flex gap-4 ml-16 sm:max-[820px]:ml-4" justify="start">
-                <Dropdown
-                    placement="bottom-start"
-                    classNames={{
-                        content: 'py-1 px-1 border border-default-200 bg-white',
-                    }}
-                >
-                    <NavbarItem>
-                        <DropdownTrigger>
-                            <Button
-                                disableRipple
-                                className="p-0 bg-transparent data-[hover=true]:bg-transparent focus:ring-1 focus:ring-slate-400"
-                                radius="sm"
-                                variant="light"
-                            >
-                                <span className="sm:max-md:w-[120px] sm:max-md:truncate">
-                                    {NAVBAR_MENU_ITEMS[0].name}
-                                </span>
-                            </Button>
-                        </DropdownTrigger>
-                    </NavbarItem>
-                    <DropdownMenu
-                        aria-label="Web Development"
-                        className="w-[340px]"
-                        itemClasses={{
-                            base: 'gap-4',
-                        }}
-                    >
-                        {MENU_ITEMS_WEB_DEV.map((item) => (
-                            <DropdownItem
-                                key={item.key}
-                                description={item.description}
-                                href={item.url ? item.url : '/'}
-                            >
-                                <span className="font-bold">{item.title}</span>
-                            </DropdownItem>
-                        ))}
-                    </DropdownMenu>
-                </Dropdown>
-                <Dropdown
-                    placement="bottom-start"
-                    classNames={{
-                        content: 'py-1 px-1 border border-default-200 bg-white',
-                    }}
-                >
-                    <NavbarItem>
-                        <DropdownTrigger>
-                            <Button
-                                disableRipple
-                                className="p-0 bg-transparent data-[hover=true]:bg-transparent"
-                                radius="sm"
-                                variant="light"
-                            >
-                                <span className="sm:max-md:w-[120px] sm:max-md:truncate">
-                                    {NAVBAR_MENU_ITEMS[1].name}
-                                </span>
-                            </Button>
-                        </DropdownTrigger>
-                    </NavbarItem>
-                    <DropdownMenu
-                        aria-label="Data Engineering & Analytics"
-                        className="w-[340px]"
-                        itemClasses={{
-                            base: 'gap-4',
-                        }}
-                    >
-                        {MENU_ITEMS_DATA_ENGINEERING_ANALYTICS.map((item) => (
-                            <DropdownItem
-                                key={item.key}
-                                description={item.description}
-                                href={item.url ? item.url : '/'}
-                            >
-                                <span className="font-bold">{item.title}</span>
-                            </DropdownItem>
-                        ))}
-                    </DropdownMenu>
-                </Dropdown>
-                <Dropdown
-                    placement="bottom-start"
-                    classNames={{
-                        content: 'py-1 px-1 border border-default-200 bg-white',
-                    }}
-                >
-                    <NavbarItem>
-                        <DropdownTrigger>
-                            <Button
-                                disableRipple
-                                className="p-0 bg-transparent data-[hover=true]:bg-transparent"
-                                radius="sm"
-                                variant="light"
-                            >
-                                <span className="sm:max-md:w-[120px] sm:max-md:truncate">
-                                    {NAVBAR_MENU_ITEMS[2].name}
-                                </span>
-                            </Button>
-                        </DropdownTrigger>
-                    </NavbarItem>
-                    <DropdownMenu
-                        aria-label="Algorithms"
-                        className="w-[340px]"
-                        itemClasses={{
-                            base: 'gap-4',
-                        }}
-                    >
-                        {MENU_ITEMS_ALGORITHMS.map((item) => (
-                            <DropdownItem key={item.key} description={item.description}>
-                                <span className="font-bold">{item.title}</span>
-                            </DropdownItem>
-                        ))}
-                    </DropdownMenu>
-                </Dropdown>
-                <Dropdown
-                    placement="bottom-start"
-                    classNames={{
-                        content: 'py-1 px-1 border border-default-200 bg-white',
-                    }}
-                >
-                    <NavbarItem>
-                        <DropdownTrigger>
-                            <Button
-                                disableRipple
-                                className="p-0 bg-transparent data-[hover=true]:bg-transparent"
-                                radius="sm"
-                                variant="light"
-                            >
-                                <span className="sm:max-md:w-[120px] sm:max-md:truncate">
-                                    {NAVBAR_MENU_ITEMS[3].name}
-                                </span>
-                            </Button>
-                        </DropdownTrigger>
-                    </NavbarItem>
-                    <DropdownMenu
-                        aria-label="Data Science, ML & AI"
-                        className="w-[340px]"
-                        itemClasses={{
-                            base: 'gap-4',
-                        }}
-                    >
-                        {MENU_ITEMS_DATA_SCIENCE_ML_AI.map((item) => (
-                            <DropdownItem key={item.key} description={item.description}>
-                                <span className="font-bold">{item.title}</span>
-                            </DropdownItem>
-                        ))}
-                    </DropdownMenu>
-                </Dropdown>
-            </NavbarContent>
-            <NavbarMenu>
-                {NAVBAR_MENU_ITEMS.map((item, index) => (
-                    <NavbarMenuItem key={`${item}-${index}`}>
-                        <Link className="w-full" onClick={() => setIsMenuOpen(false)} href={item.path}>
-                            {item.name}
-                        </Link>
-                    </NavbarMenuItem>
+                {NAVBAR_ITEMS.map((customNavbarItem) => (
+                    <NavbarItemCustom key={customNavbarItem.name} navbarItem={customNavbarItem} />
                 ))}
-            </NavbarMenu>
+            </NavbarContent>
+            <Menu setIsMenuOpen={setIsMenuOpen} />
         </Navbar>
+    );
+}
+
+function Logo() {
+    return (
+        <div className="flex items-center shrink-0">
+            <Link
+                href="/"
+                className="flex items-center rounded transition duration-200 hover:bg-gray-400 hover:text-gray-400 hover:ease-in-out focus:text-neutral-300"
+            >
+                <Image src="/images/icons8-data-science-64.png" alt="Logo" width={48} height={48} />
+            </Link>
+        </div>
+    );
+}
+
+type MenuProps = {
+    setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+function Menu({ setIsMenuOpen }: MenuProps) {
+    return (
+        <NavbarMenu>
+            {NAVBAR_ITEMS.map((item, index) => (
+                <NavbarMenuItem key={`${item}-${index}`}>
+                    <Link className="w-full" onClick={() => setIsMenuOpen(false)} href={item.path}>
+                        {item.name}
+                    </Link>
+                </NavbarMenuItem>
+            ))}
+        </NavbarMenu>
+    );
+}
+
+function NavbarItemCustom({ navbarItem }: { navbarItem: NavbarItemType }) {
+    return (
+        <NavbarItem>
+            <Link className="rounded  sm:max-md:w-[120px] sm:max-md:truncate" href={navbarItem.path}>
+                {navbarItem.name}
+            </Link>
+        </NavbarItem>
     );
 }

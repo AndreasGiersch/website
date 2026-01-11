@@ -8,9 +8,23 @@ export default function Footer() {
                     © Andreas Giersch. All rights reserved. Icons by{' '}
                     <Link className="underline" href={'https://icons8.com/'}>
                         Icons8.
-                    </Link>
+                    </Link>{' '}
                 </span>
-                <span> Created with Next.js, Tailwind CSS and NextUI.</span>
+                <span>
+                    Created with{' '}
+                    <Link className="underline" href={'https://nextjs.org/'}>
+                        Next.js
+                    </Link>
+                    ,{' '}
+                    <Link className="underline" href={'https://tailwindcss.com/'}>
+                        Tailwind CSS
+                    </Link>{' '}
+                    and{' '}
+                    <Link className="underline" href={'https://www.heroui.com/'}>
+                        HeroUI
+                    </Link>
+                    .
+                </span>
             </div>
         </div>
     );

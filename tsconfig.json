@@ -37,8 +37,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/webdev/exercises/tictactoe/page.jsx",
-    "app/webdev/exercises/filterable-product-table/page.jsx",
+    "app/projects/webdev/exercises/tictactoe/page.jsx",
+    "app/projects/webdev/exercises/filterable-product-table/page.jsx",
     ".next/dev/types/**/*.ts"
   ],
   "exclude": [

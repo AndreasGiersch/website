@@ -1,19 +1,18 @@
 'use client';
+
 import BackButton from '@/components/BackButton';
 import CustomCard from '@/components/CustomCard/CustomCard';
 
-const webdevPages = [
+const exercisePages = [
     {
-        path: '/exercises',
-        name: 'Simple React Exercises taken from official Tutorials',
-        description: 'Sample Description. Edit later.',
+        path: '/filterable-product-table',
+        name: 'Filterable Product Table',
+        description: 'A sample product table with filtering and sorting.',
     },
-    { path: '/geo-maps', name: 'Geographical Maps', description: 'Sample Description. Edit later.' },
-    { path: '/heatmaps', name: 'Heatmaps for various data formats', description: 'Sample Description. Edit later.' },
-    { path: '/time-series', name: 'Time Series Data Visualization', description: 'Sample Description. Edit later.' },
+    { path: '/tictactoe', name: 'Tic Tac Toe', description: 'A simple tic-tac-toe game.' },
 ];
 
-const Webdev = () => {
+const Exercises = () => {
     return (
         <div className="flex w-full h-full flex-col items-center justify-start">
             <div id="content-top" className="flex w-full h-32 pl-10 pt-6">
@@ -24,10 +23,10 @@ const Webdev = () => {
 
             <div id="content-middle" className="flex w-full grow items-center justify-center">
                 <div className="grid grid-cols-3 gap-4">
-                    {webdevPages.map((page, index) => {
+                    {exercisePages.map((page, index) => {
                         return CustomCard({
                             index,
-                            path: `/webdev${page.path}`,
+                            path: `/projects/webdev/exercises/${page.path}`,
                             name: page.name,
                             description: page.description,
                         });
@@ -35,7 +34,7 @@ const Webdev = () => {
                 </div>
             </div>
             <div id="content-bottom" className="flex w-full h-32 pl-10 pt-10">
-                <BackButton path={'/'} className="bg-slate-200 rounded-sm border">
+                <BackButton path={'/webdev'} className="bg-slate-200 rounded-sm border">
                     Go Back
                 </BackButton>
             </div>
@@ -43,4 +42,4 @@ const Webdev = () => {
     );
 };
 
-export default Webdev;
+export default Exercises;
