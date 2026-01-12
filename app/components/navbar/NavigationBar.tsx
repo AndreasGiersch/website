@@ -23,8 +23,8 @@ export default function NavigationBar() {
 
     return (
         <Navbar
-            className="p-2 justify-start h-16 bg-gray-500"
             classNames={{
+                base: 'p-2 justify-start h-16 bg-transparent text-background',
                 wrapper: 'justify-start',
                 content: ['data-[justify=start]:grow-0'],
             }}
@@ -51,11 +51,8 @@ export default function NavigationBar() {
 function Logo() {
     return (
         <div className="flex items-center shrink-0">
-            <Link
-                href="/"
-                className="flex items-center rounded transition duration-200 hover:bg-gray-400 hover:text-gray-400 hover:ease-in-out focus:text-neutral-300"
-            >
-                <Image src="/images/icons8-data-science-64.png" alt="Logo" width={48} height={48} />
+            <Link href="/" className="flex items-center rounded  focus:text-neutral-300">
+                <Image src="/images/Ag-Logo.png" alt="Logo" width={48} height={48} />
             </Link>
         </div>
     );

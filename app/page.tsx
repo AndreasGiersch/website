@@ -1,4 +1,5 @@
-import { Github, Linkedin, Mail, ArrowDown } from 'lucide-react';
+import { Github, Linkedin, Mail } from 'lucide-react';
+import Link from 'next/link';
 
 function Home() {
     return (
@@ -31,7 +32,7 @@ function Home() {
                 </p>
 
                 <div className="mt-8 flex flex-wrap justify-center gap-2">
-                    {['TypeScript', 'Next.js', 'React', 'Python', 'Node.js', 'PostgreSQL'].map((tech) => (
+                    {['TypeScript', 'Next.js', 'React', 'Python', 'FastAPI', 'Kubernetes'].map((tech) => (
                         <span
                             key={tech}
                             className="rounded-xl border-1 border-white bg-muted/50 px-3 py-1 text-sm font-medium  transition-colors hover:bg-muted"
@@ -43,7 +44,7 @@ function Home() {
 
                 <div className="mt-10 flex items-center gap-4">
                     <a
-                        href="https://github.com"
+                        href="https://github.com/AndreasGiersch"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="group flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card/50 text-muted-foreground transition-all hover:border-primary/50 hover:text-primary hover:glow"
@@ -52,7 +53,7 @@ function Home() {
                         <Github className="h-5 w-5 transition-transform group-hover:scale-110" />
                     </a>
                     <a
-                        href="https://linkedin.com"
+                        href="https://www.linkedin.com/in/andreas-giersch-22a570233/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="group flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card/50 text-muted-foreground transition-all hover:border-primary/50 hover:text-primary hover:glow"
@@ -61,7 +62,7 @@ function Home() {
                         <Linkedin className="h-5 w-5 transition-transform group-hover:scale-110" />
                     </a>
                     <a
-                        href="mailto:hello@example.com"
+                        href="mailto:andreasgiersch@web.de"
                         className="group flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card/50 text-muted-foreground transition-all hover:border-primary/50 hover:text-primary hover:glow"
                         aria-label="Email"
                     >
@@ -69,13 +70,12 @@ function Home() {
                     </a>
                 </div>
 
-                <a
-                    href="#projects"
-                    className="mt-10 inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground link-underline"
+                <Link
+                    href="/projects"
+                    className="mt-10 inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary link-underline"
                 >
                     View my work
-                    <ArrowDown className="h-4 w-4 animate-bounce" />
-                </a>
+                </Link>
             </main>
         </div>
     );
