@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 function Home() {
     return (
-        <div className="flex size-full flex-col items-center justify-center px-6 hero-gradient">
+        <div className="flex size-full flex-col items-center justify-center px-6">
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
                 <div className="absolute -right-40 -top-40 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
                 <div className="absolute -bottom-40 -left-40 h-96 w-96 rounded-full bg-accent/5 blur-3xl" />

@@ -41,7 +41,7 @@ export default function RootLayout({
             <body className={inter.className}>
                 <Providers>
                     <NavigationBar />
-                    <div className="flex h-[calc(100vh-64px-40px)] flex-col items-center">{children}</div>
+                    <div className="flex h-[calc(100vh-64px-40px)] flex-col items-center hero-gradient">{children}</div>
                     <Footer />
                 </Providers>
             </body>
