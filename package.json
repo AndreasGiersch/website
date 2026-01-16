@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "A portfolio website showing the most notable Repos and other Coding-Related Stuff",
   "private": true,
-  "author": "Andreas Giersch <andreasgiersch@web.de>",
+  "author": "Andreas Giersch",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

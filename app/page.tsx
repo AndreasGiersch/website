@@ -1,5 +1,7 @@
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Linkedin } from 'lucide-react';
 import Link from 'next/link';
+
+const LOOKING_FOR_OPPORTUNITIES = false;
 
 function Home() {
     return (
@@ -12,10 +14,16 @@ function Home() {
             <main className="relative z-10 flex max-w-2xl flex-col items-center text-center">
                 <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-border bg-card/50 px-4 py-1.5 text-sm text-muted-foreground backdrop-blur-sm">
                     <span className="relative flex h-2 w-2">
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-                        <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+                        <span
+                            className={`absolute inline-flex h-full w-full animate-ping rounded-full ${LOOKING_FOR_OPPORTUNITIES ? 'bg-green-400' : 'bg-red-400'} opacity-75`}
+                        />
+                        <span
+                            className={`relative inline-flex h-2 w-2 rounded-full ${LOOKING_FOR_OPPORTUNITIES ? 'bg-green-500' : 'bg-red-500'}`}
+                        />
                     </span>
-                    Available for new opportunities
+                    {LOOKING_FOR_OPPORTUNITIES
+                        ? 'Available for new opportunities'
+                        : 'Currently not available for new opportunities'}
                 </div>
 
                 <h1 className="font-display text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl">
@@ -60,13 +68,6 @@ function Home() {
                         aria-label="LinkedIn"
                     >
                         <Linkedin className="h-5 w-5 transition-transform group-hover:scale-110" />
-                    </a>
-                    <a
-                        href="mailto:andreasgiersch@web.de"
-                        className="group flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card/50 text-muted-foreground transition-all hover:border-primary/50 hover:text-primary hover:glow"
-                        aria-label="Email"
-                    >
-                        <Mail className="h-5 w-5 transition-transform group-hover:scale-110" />
                     </a>
                 </div>
 
