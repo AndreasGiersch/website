@@ -1,16 +1,16 @@
 'use client';
 
 import BackButton from '@/components/BackButton';
-import CustomCard from '@/components/CustomCard/CustomCard';
+// import CustomCard from '@/components/CustomCard/CustomCard';
 
-const exercisePages = [
-    {
-        path: '/filterable-product-table',
-        name: 'Filterable Product Table',
-        description: 'A sample product table with filtering and sorting.',
-    },
-    { path: '/tictactoe', name: 'Tic Tac Toe', description: 'A simple tic-tac-toe game.' },
-];
+// const exercisePages = [
+//     {
+//         path: '/filterable-product-table',
+//         name: 'Filterable Product Table',
+//         description: 'A sample product table with filtering and sorting.',
+//     },
+//     { path: '/tictactoe', name: 'Tic Tac Toe', description: 'A simple tic-tac-toe game.' },
+// ];
 
 const Exercises = () => {
     return (
@@ -21,7 +21,7 @@ const Exercises = () => {
                 </h3>
             </div>
 
-            <div id="content-middle" className="flex w-full grow items-center justify-center">
+            {/* <div id="content-middle" className="flex w-full grow items-center justify-center">
                 <div className="grid grid-cols-3 gap-4">
                     {exercisePages.map((page, index) => {
                         return CustomCard({
@@ -32,7 +32,7 @@ const Exercises = () => {
                         });
                     })}
                 </div>
-            </div>
+            </div> */}
             <div id="content-bottom" className="flex w-full h-32 pl-10 pt-10">
                 <BackButton path={'/webdev'} className="bg-slate-200 rounded-sm border">
                     Go Back
